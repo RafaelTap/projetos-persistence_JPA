@@ -18,9 +18,14 @@ public class ProgramaTeste {
 		//HelperMedico mDao = new HelperMedico(em);
 		//mDao.cadastrarMedico("Farides Santos", "334657RJ", "Clínico Geral", "106");
 		
+		//HelperConsulta hDao = new HelperConsulta(em);
+		//hDao.criarConsulta("26/07/24", "8-00h", "sexta-feira", 7, 6);
+		
+		//HelperPaciente hDao = new HelperPaciente(em);
+		//hDao.obterPaciente(2);
+			
 		HelperConsulta hDao = new HelperConsulta(em);
-		hDao.criarConsulta("26/07/24", "8-00h", "sexta-feira", 7, 6);
-				
+		hDao.atualizarConsulta("29/07/24", "8-00h", "segunda-feira", 11);
 		
 		emf.close();
 		em.close();

@@ -2,7 +2,6 @@ package rafael.edu.helper;
 
 import javax.persistence.EntityManager;
 
-import rafael.edu.entity.Medico;
 import rafael.edu.entity.Paciente;
 
 public class HelperPaciente {
@@ -29,8 +28,14 @@ public class HelperPaciente {
 		}
 		return toStringPacienteCadastrado();
 	}
-	
-	//DELETE
+
+	// READ
+	public Paciente obterPaciente(int idPaciente) {
+		Paciente paciente = em.find(Paciente.class, idPaciente);
+		return paciente;
+	}
+
+	// DELETE
 	public String excluirPaciente(int idPaciente) {
 		try {
 			Paciente paciente = em.find(Paciente.class, idPaciente);
@@ -47,9 +52,9 @@ public class HelperPaciente {
 	private String toStringPacienteCadastrado() {
 		return "Paciente cadastrado.";
 	}
-	
+
 	private String toStringPacienteExcluido() {
 		return "Paciente excluído.";
 	}
-	
+
 }

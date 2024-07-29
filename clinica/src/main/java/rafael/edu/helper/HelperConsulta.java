@@ -14,7 +14,7 @@ public class HelperConsulta {
 		this.em = em;
 	}
 
-	//CREATE
+	// CREATE
 	public String criarConsulta(String data, String horario, String diaSemana, int idMedico, int idPaciente) {
 		try {
 			Consulta consulta = new Consulta();
@@ -33,8 +33,32 @@ public class HelperConsulta {
 		}
 		return toStringConsultaCadastrada();
 	}
-	
-	//DELETE
+
+	// UPDATE
+	public String atualizarConsulta(String data, String horario, String diaSemana, int idConsulta) {
+		try {
+			Consulta consulta = em.find(Consulta.class, idConsulta);
+			consulta.setData(data);
+			consulta.setHorario(horario);
+			consulta.setDiaSemana(diaSemana);
+			consulta.setIdConsulta(idConsulta);
+			em.getTransaction().begin();
+			em.merge(consulta);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+
+		}
+		return toStringConsultaAtualizada();
+	}
+
+	// READ
+	public Consulta obterConsulta(int idConsulta) {
+		Consulta consulta = em.find(Consulta.class, idConsulta);
+		return consulta;
+	}
+
+	// DELETE
 	public String excluirConsulta(int idConsulta) {
 		try {
 			Consulta consulta = em.find(Consulta.class, idConsulta);
@@ -54,5 +78,9 @@ public class HelperConsulta {
 
 	private String toStringConsultaExcluido() {
 		return "Consulta excluída";
+	}
+
+	private String toStringConsultaAtualizada() {
+		return "Consulta atualizada.";
 	}
 }

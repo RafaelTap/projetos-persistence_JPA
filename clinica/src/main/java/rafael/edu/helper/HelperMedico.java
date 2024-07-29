@@ -12,7 +12,7 @@ public class HelperMedico {
 		this.em = em;
 	}
 
-	// CEATE
+	// CREATE
 	public String cadastrarMedico(String nome, String crm, String especialidade, String matricula) {
 		try {
 			Medico medico = new Medico();
@@ -23,12 +23,17 @@ public class HelperMedico {
 			em.getTransaction().begin();
 			em.persist(medico);
 			em.getTransaction().commit();
-
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return toStringMedicoCadastrado();
 	}
+	
+	// READ
+		public Medico obterPaciente(int idMedico) {
+			Medico Medico = em.find(Medico.class, idMedico); 
+			return Medico;
+		}
 
 	// DELETE
 	public String excluirMedico(int idMedico) {
