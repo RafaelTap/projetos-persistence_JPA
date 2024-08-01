@@ -29,7 +29,7 @@
      
     <property
      name="javax.persistence.jdbc.url"
-     value="jdbc:mysql://localhost/clinica"/>
+     value="jdbc:mysql://localhost/clinica_db"/>
      
     <property
      name="javax.persistence.jdbc.user"

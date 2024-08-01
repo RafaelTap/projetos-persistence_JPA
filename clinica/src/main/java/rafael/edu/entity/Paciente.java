@@ -1,11 +1,13 @@
 package rafael.edu.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,8 +30,8 @@ public class Paciente {
 	@Column
 	String cpf;
 
-	@OneToOne(mappedBy = "paciente")
-	Consulta consulta;
+	@OneToMany(mappedBy = "paciente")
+	List<Consulta> consulta;
 
 	public int getIdPaciente() {
 		return idPaciente;
@@ -71,11 +73,11 @@ public class Paciente {
 		this.cpf = cpf;
 	}
 
-	public Consulta getConsulta() {
+	public List<Consulta> getConsulta() {
 		return consulta;
 	}
 
-	public void setConsulta(Consulta consulta) {
+	public void setConsulta(List<Consulta> consulta) {
 		this.consulta = consulta;
 	}
 

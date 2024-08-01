@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,11 +22,11 @@ public class Consulta {
 
 	String diaSemana;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "medico_idMedico")
 	Medico medico;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "paciente_idPaciente")
 	Paciente paciente;
 
