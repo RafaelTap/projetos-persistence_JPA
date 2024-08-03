@@ -2,9 +2,11 @@
 <persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 	<persistence-unit name="library">
 	
-	<!-- <class>rafael.edu.entity.</class>
-   <class>rafael.edu.entity.</class>
-   <class>rafael.edu.entity.</class> -->
+   <class>rafael.edu.entity.Book</class>
+   <!-- <class>rafael.edu.entity.BookHasCustomer</class> -->
+   <class>rafael.edu.entity.RentRegistration</class> 
+   <class>rafael.edu.entity.Section</class>
+   <class>rafael.edu.entity.Customer</class>
    
    <properties>
    
