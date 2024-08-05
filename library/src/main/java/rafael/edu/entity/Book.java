@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,16 +24,16 @@ public class Book {
 	private String title;
 
 	@Column
-	private String Author;
+	private String author;
 
-	@Column
-	@ManyToOne 
+	@ManyToOne
 	private Section section;
 
 	@ManyToMany(mappedBy = "bookList")
 	private List<Customer> customerList;
 
-	private List<RentRegistration> bookRentList;
+	@OneToMany(mappedBy = "book")
+	private List<RentRegistration> RentRegistrationList;
 
 	public int getIdBook() {
 		return idBook;
@@ -51,11 +52,11 @@ public class Book {
 	}
 
 	public String getAuthor() {
-		return Author;
+		return author;
 	}
 
 	public void setAuthor(String author) {
-		Author = author;
+		this.author = author;
 	}
 
 	public Section getSection() {
@@ -74,12 +75,12 @@ public class Book {
 		this.customerList = customerList;
 	}
 
-	public List<RentRegistration> getBookRentList() {
-		return bookRentList;
+	public List<RentRegistration> getRentRegistrationList() {
+		return RentRegistrationList;
 	}
 
-	public void setBookRentList(List<RentRegistration> bookRentList) {
-		this.bookRentList = bookRentList;
+	public void setRentRegistrationList(List<RentRegistration> rentRegistrationList) {
+		RentRegistrationList = rentRegistrationList;
 	}
 
 }

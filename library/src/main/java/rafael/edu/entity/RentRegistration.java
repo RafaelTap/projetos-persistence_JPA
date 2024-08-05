@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -24,10 +25,12 @@ public class RentRegistration {
 	@Column
 	private String returnDate;
 
-	@Column  
+	@ManyToOne 
+	@JoinColumn(name = "book_idBook")
 	private Book book;
 
 	@ManyToOne
+	@JoinColumn(name = "customer_idCustomer")
 	private Customer customer;
 
 	public int getIdRent() {

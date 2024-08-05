@@ -27,8 +27,8 @@ public class Customer {
 	@Column
 	private int registration;
 
-	@OneToMany
-	private List<RentRegistration> bookRentList;
+	@OneToMany(mappedBy = "customer")
+	private List<RentRegistration> RentRegistrationList;
 
 	@ManyToMany
 	@JoinTable(name = "book_has_customer", joinColumns = @JoinColumn(referencedColumnName = "customer_idCustomer"), inverseJoinColumns = @JoinColumn(referencedColumnName = "book_idBook"))
@@ -58,12 +58,12 @@ public class Customer {
 		this.registration = registration;
 	}
 
-	public List<RentRegistration> getBookRentList() {
-		return bookRentList;
+	public List<RentRegistration> getRentRegistrationList() {
+		return RentRegistrationList;
 	}
 
-	public void setBookRentList(List<RentRegistration> bookRentList) {
-		this.bookRentList = bookRentList;
+	public void setRentRegistrationList(List<RentRegistration> rentRegistrationList) {
+		RentRegistrationList = rentRegistrationList;
 	}
 
 	public List<Book> getBookList() {
