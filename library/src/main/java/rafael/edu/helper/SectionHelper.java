@@ -16,7 +16,7 @@ public class SectionHelper {
 	}
 
 	// CREATE
-	public String createSection (String sectionName, int number) {
+	public String createSection(String sectionName, int number) {
 		try {
 			emf = Persistence.createEntityManagerFactory("library");
 			em = emf.createEntityManager();
@@ -28,7 +28,7 @@ public class SectionHelper {
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}finally {
+		} finally {
 			em.close();
 			emf.close();
 		}
@@ -36,14 +36,74 @@ public class SectionHelper {
 	}
 
 	// UPDATE
+	public String upDateSection(String sectionName, int number, int idSection) {
+		try {
+			emf = Persistence.createEntityManagerFactory("library");
+			em = emf.createEntityManager();
+			Section section = em.find(Section.class, idSection);
+			section.setSectionName(sectionName);
+			section.setNumber(number);
+			em.getTransaction().begin();
+			em.merge(section);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			em.close();
+			emf.close();
+		}
+		return toStringUpDatedSection();
+	}
 
 	// READ
+	public void getSection(int idSection) {
+		try {
+			emf = Persistence.createEntityManagerFactory("library");
+			em = emf.createEntityManager();
+			em.find(Section.class, idSection);
+			System.out.println(toStringGettingSection());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			em.close();
+			emf.close();
+		}
+	}
 
 	// DELETE
-	
-	//TOSTRING
-	public String toStringSectionCreated() {
+	public String removeSection(int idSection) {
+		try {
+			emf = Persistence.createEntityManagerFactory("library");
+			em = emf.createEntityManager();
+			Section section = em.find(Section.class, idSection);
+			em.getTransaction().begin();
+			em.remove(section);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			em.close();
+			emf.close();
+		}
+		return toStringRemovedSection();
+	}
+
+	// TOSTRING
+	private String toStringSectionCreated() {
 		return "Section created";
+	}
+
+	private String toStringUpDatedSection() {
+		return "Up dated section";
+	}
+
+	private String toStringGettingSection() {
+		Section section = new Section();
+		return "Section: " + section.getSectionName() + "\nrow: " + section.getNumber();
+	}
+
+	private String toStringRemovedSection() {
+		return "Section removed.";
 	}
 
 }

@@ -36,14 +36,71 @@ public class CustomerHelper {
 	}
 
 	// UPDATE
+	public String UpDateCustomer(String name, int registration, int idCustomer) {
+		try {
+			emf = Persistence.createEntityManagerFactory("library");
+			em = emf.createEntityManager();
+			Customer customer = em.find(Customer.class, idCustomer);
+			customer.setName(name);
+			customer.setRegistration(registration);
+			em.getTransaction().begin();
+			em.merge(customer);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			em.close();
+			emf.close();
+		}
+		return toStringUpdatedCustomer();
+	}
 
 	// READ
+	public String getCustomer(int idCustomer) {
+		try {
+			emf = Persistence.createEntityManagerFactory("library");
+			em = emf.createEntityManager();
+			em.find(Customer.class, idCustomer);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			em.close();
+			emf.close();
+		}
+		return toStringGettingCustomer();
+	}
 
 	// DELETE
+	public String removeCustomer(int idCustomer) {
+		try {
+			emf = Persistence.createEntityManagerFactory("library");
+			em = emf.createEntityManager();
+			em.find(Customer.class, idCustomer);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			em.close();
+			emf.close();
+		}
+		return toStringRemovedCustomer();
+	}
 
 	// TOSTRING
-	public String tostringCustomerCreated() {
+	private String tostringCustomerCreated() {
 		return "Customer created.";
+	}
+
+	private String toStringUpdatedCustomer() {
+		return "Up dated customer.";
+	}
+
+	private String toStringGettingCustomer() {
+		Customer customer = new Customer();
+		return "Name: " + customer.getName() + "\nRegistration: " + customer.getRegistration();
+	}
+
+	private String toStringRemovedCustomer() {
+		return "Customer removed.";
 	}
 
 }

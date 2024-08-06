@@ -48,14 +48,76 @@ public class RentRegistrationHelper {
 	}
 
 	// UPDATE
+	public String upDateRentRegistration(int idRent, String returnDate) {
+		try {
+			emf = Persistence.createEntityManagerFactory("library");
+			em = emf.createEntityManager();
+			RentRegistration rentRegistration = em.find(RentRegistration.class, idRent);
+			rentRegistration.setReturnDate(returnDate);
+			em.getTransaction().begin();
+			em.merge(rentRegistration);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			em.close();
+			emf.close();
+		}
+		return toStringUpDatedRentRegistration();
+	}
 
 	// READ
+	public String getRentRegistration(int idRent) {
+		try {
+			emf = Persistence.createEntityManagerFactory("library");
+			em = emf.createEntityManager();
+			em.find(RentRegistration.class, idRent);
+			System.out.println();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			em.close();
+			emf.close();
+		}
+		return toStringGettingRentRegistration();
+	}
 
 	// DELETE
+	public String removeRentRegistration(int idRent) {
+		try {
+			emf = Persistence.createEntityManagerFactory("library");
+			em = emf.createEntityManager();
+			RentRegistration rentRegistration = em.find(RentRegistration.class, idRent);
+			em.getTransaction().begin();
+			em.remove(rentRegistration);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			em.close();
+			emf.close();
+		}
+		return toStringRemovedRentRegistration();
+	}
 
 	// TOSTRING
 	private String toStringRentRegistrationCreated() {
 		return "Rent Registration created.";
+	}
+
+	private String toStringUpDatedRentRegistration() {
+		return "Up dated rent registration.";
+	}
+
+	private String toStringRemovedRentRegistration() {
+		return "Rent registration removed.";
+	}
+
+	private String toStringGettingRentRegistration() {
+		RentRegistration rentRegistration = new RentRegistration();
+		return "Rent date: " + rentRegistration.getRentDate() + "\nReturn date: "
+				+ rentRegistration.getReturnDate().toString() + "\nCustomer: " + rentRegistration.getCustomer()
+				+ "\nBook: " + rentRegistration.getBook();
 	}
 
 }

@@ -17,7 +17,7 @@ public class Section {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idSession;
+	private int idSection;
 
 	@Column
 	private String sectionName;
@@ -29,12 +29,12 @@ public class Section {
 	@JoinColumn(name = "book_idBook")
 	private List<Book> bookList;
 
-	public int getIdSession() {
-		return idSession;
+	public int getIdSection() {
+		return idSection;
 	}
 
-	public void setIdSession(int idSession) {
-		this.idSession = idSession;
+	public void setIdSection(int idSection) {
+		this.idSection = idSection;
 	}
 
 	public String getSectionName() {
