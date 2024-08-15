@@ -2,7 +2,6 @@ package rafael.edu.helper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import rafael.edu.entity.Customer;
 
@@ -18,8 +17,6 @@ public class CustomerHelper {
 	// CREATE
 	public String createCustomer(String name, int registration) {
 		try {
-			emf = Persistence.createEntityManagerFactory("library");
-			em = emf.createEntityManager();
 			Customer customer = new Customer();
 			customer.setName(name);
 			customer.setRegistration(registration);
@@ -38,8 +35,6 @@ public class CustomerHelper {
 	// UPDATE
 	public String UpDateCustomer(String name, int registration, int idCustomer) {
 		try {
-			emf = Persistence.createEntityManagerFactory("library");
-			em = emf.createEntityManager();
 			Customer customer = em.find(Customer.class, idCustomer);
 			customer.setName(name);
 			customer.setRegistration(registration);
@@ -58,8 +53,6 @@ public class CustomerHelper {
 	// READ
 	public String getCustomer(int idCustomer) {
 		try {
-			emf = Persistence.createEntityManagerFactory("library");
-			em = emf.createEntityManager();
 			em.find(Customer.class, idCustomer);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -73,8 +66,6 @@ public class CustomerHelper {
 	// DELETE
 	public String removeCustomer(int idCustomer) {
 		try {
-			emf = Persistence.createEntityManagerFactory("library");
-			em = emf.createEntityManager();
 			em.find(Customer.class, idCustomer);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

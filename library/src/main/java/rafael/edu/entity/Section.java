@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,8 +24,7 @@ public class Section {
 	@Column
 	private int number;
 
-	@OneToMany
-	@JoinColumn(name = "book_idBook")
+	@OneToMany(mappedBy = "section")
 	private List<Book> bookList;
 
 	public int getIdSection() {

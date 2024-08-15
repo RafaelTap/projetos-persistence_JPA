@@ -2,7 +2,6 @@ package rafael.edu.helper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import rafael.edu.entity.Section;
 
@@ -18,8 +17,6 @@ public class SectionHelper {
 	// CREATE
 	public String createSection(String sectionName, int number) {
 		try {
-			emf = Persistence.createEntityManagerFactory("library");
-			em = emf.createEntityManager();
 			Section section = new Section();
 			section.setSectionName(sectionName);
 			section.setNumber(number);
@@ -38,8 +35,6 @@ public class SectionHelper {
 	// UPDATE
 	public String upDateSection(String sectionName, int number, int idSection) {
 		try {
-			emf = Persistence.createEntityManagerFactory("library");
-			em = emf.createEntityManager();
 			Section section = em.find(Section.class, idSection);
 			section.setSectionName(sectionName);
 			section.setNumber(number);
@@ -58,8 +53,6 @@ public class SectionHelper {
 	// READ
 	public void getSection(int idSection) {
 		try {
-			emf = Persistence.createEntityManagerFactory("library");
-			em = emf.createEntityManager();
 			em.find(Section.class, idSection);
 			System.out.println(toStringGettingSection());
 		} catch (Exception e) {
@@ -73,15 +66,13 @@ public class SectionHelper {
 	// DELETE
 	public String removeSection(int idSection) {
 		try {
-			emf = Persistence.createEntityManagerFactory("library");
-			em = emf.createEntityManager();
 			Section section = em.find(Section.class, idSection);
 			em.getTransaction().begin();
 			em.remove(section);
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}finally {
+		} finally {
 			em.close();
 			emf.close();
 		}

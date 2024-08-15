@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import rafael.edu.entity.Book;
 import rafael.edu.entity.Customer;
@@ -17,10 +16,8 @@ public class Queries {
 	private EntityManager em;
 
 	// BOOKS LISTS
-	public void bookFullList() {
+	public void booksFullList() {
 		try {
-			Persistence.createEntityManagerFactory("library");
-			em = emf.createEntityManager();
 			em.getTransaction().begin();
 			List<Book> bookList = em.createQuery("SELECT b FROM Book b", Book.class).getResultList();
 			em.getTransaction().commit();
@@ -34,16 +31,29 @@ public class Queries {
 			emf.close();
 		}
 	}
-	
-	/*
-	 * check query: select book list from one section.
-	 */
+
+	public void booksBySectionList() {
+		try {
+			em.getTransaction().begin();
+			List<Book> booksBySection = em
+					.createQuery("SELECT b FROM Book b JOIN FETCH b.section s ORDER BY s.name", Book.class)
+					.getResultList();
+			em.getTransaction().commit();
+			for (Book b : booksBySection) {
+				System.out.println("Section: " + b.getSection().getSectionName() + "\nTitle: " + b.getTitle()
+						+ "\nAuthor: " + b.getAuthor());
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			em.close();
+			emf.close();
+		}
+	}
 
 	// CUSTOMERS LISTS
-	public void customerFullList() {
+	public void customersFullList() {
 		try {
-			Persistence.createEntityManagerFactory("library");
-			em = emf.createEntityManager();
 			em.getTransaction().begin();
 			List<Customer> customerList = em.createQuery("SELECT c FROM Customer c", Customer.class).getResultList();
 			em.getTransaction().commit();
@@ -59,10 +69,8 @@ public class Queries {
 	}
 
 	// RENT REGISTRATIONs LISTS
-	public void rentRegistrationFullList() {
+	public void rentRegistrationsFullList() {
 		try {
-			Persistence.createEntityManagerFactory("library");
-			emf.createEntityManager();
 			em = emf.createEntityManager();
 			em.getTransaction().begin();
 			List<RentRegistration> rentRegistrationList = em
@@ -81,10 +89,8 @@ public class Queries {
 	}
 
 	// SECTIONS LIST
-	public void sectionFullList() {
+	public void sectionsFullList() {
 		try {
-			Persistence.createEntityManagerFactory("library");
-			em = emf.createEntityManager();
 			em.getTransaction().begin();
 			List<Section> sectionList = em.createQuery("SELECT s FROM Section s", Section.class).getResultList();
 			em.getTransaction().commit();
