@@ -14,8 +14,9 @@ public class RentRegistrationHelper {
 	private EntityManager em;
 	private EntityManagerFactory emf;
 
-	public RentRegistrationHelper(EntityManager em) {
+	public RentRegistrationHelper(EntityManager em, EntityManagerFactory emf) {
 		this.em = em;
+		this.emf = emf;
 	}
 
 	// CREATE

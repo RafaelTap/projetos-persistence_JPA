@@ -15,6 +15,11 @@ public class Queries {
 	private EntityManagerFactory emf;
 	private EntityManager em;
 
+	public Queries(EntityManager em, EntityManagerFactory emf) {
+		this.em = em;
+		this.emf = emf;
+	}
+
 	// BOOKS LISTS
 	public void booksFullList() {
 		try {
@@ -32,6 +37,9 @@ public class Queries {
 		}
 	}
 
+	/*
+	 * check error
+	 */
 	public void booksBySectionList() {
 		try {
 			em.getTransaction().begin();
@@ -81,7 +89,7 @@ public class Queries {
 						+ r.getRentDate() + "\nReturn date: " + r.getReturnDate());
 			}
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			System.out.println(e.getMessage());
 		} finally {
 			em.close();
 			emf.close();
@@ -95,7 +103,7 @@ public class Queries {
 			List<Section> sectionList = em.createQuery("SELECT s FROM Section s", Section.class).getResultList();
 			em.getTransaction().commit();
 			for (Section s : sectionList) {
-				System.out.println("Name: " + s.getSectionName() + "\nRoW: " + s.getNumber());
+				System.out.println("Name: " + s.getSectionName() + "\nRow: " + s.getNumber());
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

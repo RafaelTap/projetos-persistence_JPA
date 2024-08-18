@@ -10,8 +10,9 @@ public class CustomerHelper {
 	private EntityManager em;
 	private EntityManagerFactory emf;
 
-	public CustomerHelper(EntityManager em) {
+	public CustomerHelper(EntityManager em, EntityManagerFactory emf) {
 		this.em = em;
+		this.emf = emf;
 	}
 
 	// CREATE

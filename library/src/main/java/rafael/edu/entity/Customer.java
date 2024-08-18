@@ -31,7 +31,7 @@ public class Customer {
 	private List<RentRegistration> RentRegistrationList;
 
 	@ManyToMany
-	@JoinTable(name = "book_has_customer", joinColumns = @JoinColumn(referencedColumnName = "customer_idCustomer"), inverseJoinColumns = @JoinColumn(referencedColumnName = "book_idBook"))
+	@JoinTable(name = "book_has_customer", joinColumns = @JoinColumn(referencedColumnName = "idCustomer"), inverseJoinColumns = @JoinColumn(referencedColumnName = "idBook"))
 	private List<Book> bookList;
 
 	public int getIdCustomer() {

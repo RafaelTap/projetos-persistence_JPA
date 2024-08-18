@@ -10,8 +10,9 @@ public class SectionHelper {
 	private EntityManager em;
 	private EntityManagerFactory emf;
 
-	public SectionHelper(EntityManager em) {
+	public SectionHelper(EntityManager em, EntityManagerFactory emf)  {
 		this.em = em;
+		this.emf = emf;
 	}
 
 	// CREATE

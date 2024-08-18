@@ -11,8 +11,9 @@ public class BookHelper {
 	private EntityManager em;
 	private EntityManagerFactory emf;
 
-	public BookHelper(EntityManager em) {
+	public BookHelper(EntityManager em, EntityManagerFactory emf) {
 		this.em = em;
+		this.emf = emf;
 	}
 
 	// CREATE
