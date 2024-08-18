@@ -6,4 +6,4 @@ Exercise 1 (Clinica).
 A simple system that records medical consultations.
 
 Exercise 2 (library).
-A simple system tha records rent registrations of a library.
+A simple system that records rent registrations of a library.
