@@ -17,15 +17,15 @@ public class RentRegistration {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idRent;
+	private int idRentRegistration;
 
 	@Column
 	private LocalDate rentDate;
-	
+
 	@Column
 	private String returnDate;
 
-	@ManyToOne 
+	@ManyToOne
 	@JoinColumn(name = "book_idBook")
 	private Book book;
 
@@ -33,12 +33,12 @@ public class RentRegistration {
 	@JoinColumn(name = "customer_idCustomer")
 	private Customer customer;
 
-	public int getIdRent() {
-		return idRent;
+	public int getIdRentRegistration() {
+		return idRentRegistration;
 	}
 
-	public void setIdRent(int idRent) {
-		this.idRent = idRent;
+	public void setIdRentRegistration(int idRentRegistration) {
+		this.idRentRegistration = idRentRegistration;
 	}
 
 	public LocalDate getRentDate() {

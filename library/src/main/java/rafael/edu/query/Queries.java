@@ -27,7 +27,7 @@ public class Queries {
 			List<Book> bookList = em.createQuery("SELECT b FROM Book b", Book.class).getResultList();
 			em.getTransaction().commit();
 			for (Book b : bookList) {
-				System.out.println("Title: " + b.getTitle() + "\nAuthor: " + b.getAuthor());
+				System.out.println("Title: " + b.getTitle() + "\nAuthor: " + b.getAuthor() + "\n");
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -37,19 +37,17 @@ public class Queries {
 		}
 	}
 
-	/*
-	 * check error
-	 */
-	public void booksBySectionList() {
+	
+	public void booksFullListBySection() {
 		try {
 			em.getTransaction().begin();
 			List<Book> booksBySection = em
-					.createQuery("SELECT b FROM Book b JOIN FETCH b.section s ORDER BY s.name", Book.class)
+					.createQuery("SELECT b FROM Book b JOIN FETCH b.section s ORDER BY s.sectionName", Book.class)
 					.getResultList();
 			em.getTransaction().commit();
 			for (Book b : booksBySection) {
 				System.out.println("Section: " + b.getSection().getSectionName() + "\nTitle: " + b.getTitle()
-						+ "\nAuthor: " + b.getAuthor());
+						+ "\nAuthor: " + b.getAuthor() + "\n");
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -77,6 +75,10 @@ public class Queries {
 	}
 
 	// RENT REGISTRATIONs LISTS
+	
+	/*
+	 * check correct query to show customer name and book name.
+	 */
 	public void rentRegistrationsFullList() {
 		try {
 			em = emf.createEntityManager();
