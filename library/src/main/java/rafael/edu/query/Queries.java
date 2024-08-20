@@ -37,7 +37,6 @@ public class Queries {
 		}
 	}
 
-	
 	public void booksFullListBySection() {
 		try {
 			em.getTransaction().begin();
@@ -75,20 +74,18 @@ public class Queries {
 	}
 
 	// RENT REGISTRATIONs LISTS
-	
-	/*
-	 * check correct query to show customer name and book name.
-	 */
 	public void rentRegistrationsFullList() {
 		try {
 			em = emf.createEntityManager();
 			em.getTransaction().begin();
 			List<RentRegistration> rentRegistrationList = em
-					.createQuery("SELECT r FROM RentRegistration r", RentRegistration.class).getResultList();
+					.createQuery("SELECT r FROM RentRegistration r JOIN r.customer c JOIN r.book b",
+							RentRegistration.class)
+					.getResultList();
 			em.getTransaction().commit();
 			for (RentRegistration r : rentRegistrationList) {
-				System.out.println("Customer: " + r.getCustomer() + "\nBook: " + r.getBook() + "\nRent date: "
-						+ r.getRentDate() + "\nReturn date: " + r.getReturnDate());
+				System.out.println("Customer: " + r.getCustomer().getName() + "\nBook: " + r.getBook().getTitle()
+						+ "\nRent date: " + r.getRentDate() + "\nReturn date: " + r.getReturnDate() + "\n");
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -114,4 +111,8 @@ public class Queries {
 			emf.close();
 		}
 	}
+
+	// BOOKS FROM CUSTOMERS
+
+	// CUSTOMERS FROM BOOKS
 }
