@@ -5,9 +5,20 @@
 	
 	<!-- entity classes-->
 	
-	 <!-- configurações do hibernate-->
+	<class>rafael.edu.entity.Arena </class>
+	<class>rafael.edu.entity.ChampionShip</class>
+	<class>rafael.edu.entity.FemaleAthlete </class>
+	<class>rafael.edu.entity.FemaleCategory</class>
+	<class>rafael.edu.entity.FemaleFigth</class>
+	<class>rafael.edu.entity.MaleAthlete</class>
+	<class>rafael.edu.entity.MaleCategory</class>
+	<class>rafael.edu.entity.MaleFigth</class>
+	<class>rafael.edu.entity.Team</class>
+	<class>rafael.edu.entity.TeamLeader</class>
+	
+	 <!-- hibernate configuration-->
 	 
-	 <properties>
+   <properties>
     <property
      name="hibernate.dialect"
      value="org.hibernate.dialect.MySQLDialect"/>
@@ -24,11 +35,11 @@
     name = "hibernate.format_sql"
     value = "true"/>
     
-     <!-- configuração de conexão-->
+     <!-- conexion cofiguration-->
      
     <property
      name="javax.persistence.jdbc.url"
-     value="jdbc:mysql://localhost/library_db"/>
+     value="jdbc:mysql://localhost/jjFederation_db"/>
      
     <property
      name="javax.persistence.jdbc.user"
