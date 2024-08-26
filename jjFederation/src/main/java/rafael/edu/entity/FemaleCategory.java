@@ -1,17 +1,22 @@
 package rafael.edu.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "femaleCategory")
 public class FemaleCategory {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idCategory;
+	private int idFemaleCategory;
 	
 	@Column
 	private String name;
@@ -25,7 +30,8 @@ public class FemaleCategory {
 	@Column
 	private String weight;
 
-	private FemaleFigth femaleFigth;
+	@OneToMany(mappedBy = "femaleCategory")
+	private List<FemaleFigth> femaleFigthsList;
 
 
 }
