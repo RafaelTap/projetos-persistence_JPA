@@ -1,11 +1,15 @@
 package rafael.edu.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -31,9 +35,10 @@ public class FemaleAthlete {
 	@ManyToOne
 	@JoinColumn(name = "team_idTeam")
 	private Team team;
-	
-	@OneToOne
-	private FemaleFigth femaleFigth;
+
+	@ManyToMany
+	@JoinTable(name = "femaleFight_has_femaleAthlete", joinColumns = @JoinColumn(referencedColumnName = "idFemaleAthlete"), inverseJoinColumns = @JoinColumn(referencedColumnName = "idFemaleFigth"))
+	private List<FemaleFigth> femaleFigthList;
 
 	public int getIdFemaleAthlete() {
 		return idFemaleAthlete;
@@ -83,13 +88,12 @@ public class FemaleAthlete {
 		this.team = team;
 	}
 
-	public FemaleFigth getFemaleFigth() {
-		return femaleFigth;
+	public List<FemaleFigth> getFemaleFigthList() {
+		return femaleFigthList;
 	}
 
-	public void setFemaleFigth(FemaleFigth femaleFigth) {
-		this.femaleFigth = femaleFigth;
+	public void setFemaleFigthList(List<FemaleFigth> femaleFigthList) {
+		this.femaleFigthList = femaleFigthList;
 	}
-
 
 }

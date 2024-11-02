@@ -1,13 +1,15 @@
 package rafael.edu.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class FemaleFigth {
@@ -19,15 +21,15 @@ public class FemaleFigth {
 	@Column
 	private String time;
 
+	@Column
+	private String name;
+
 	@ManyToOne
 	@JoinColumn(name = "femaleCategory_idFemaleCategory")
 	private FemaleCategory femaleCategory;
 
-	@OneToOne
-	private FemaleAthlete athlete_1;
-
-	@OneToOne
-	private FemaleAthlete athlete_2;
+	@ManyToMany(mappedBy = "femaleFigthList")
+	private List<FemaleAthlete> femaleAthleteList;
 
 	@ManyToOne
 	@JoinColumn(name = "arena_idArena")
@@ -49,6 +51,14 @@ public class FemaleFigth {
 		this.time = time;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public FemaleCategory getFemaleCategory() {
 		return femaleCategory;
 	}
@@ -57,20 +67,12 @@ public class FemaleFigth {
 		this.femaleCategory = femaleCategory;
 	}
 
-	public FemaleAthlete getAthlete_1() {
-		return athlete_1;
+	public List<FemaleAthlete> getFemaleAthleteList() {
+		return femaleAthleteList;
 	}
 
-	public void setAthlete_1(FemaleAthlete athlete_1) {
-		this.athlete_1 = athlete_1;
-	}
-
-	public FemaleAthlete getAthlete_2() {
-		return athlete_2;
-	}
-
-	public void setAthlete_2(FemaleAthlete athlete_2) {
-		this.athlete_2 = athlete_2;
+	public void setFemaleAthleteList(List<FemaleAthlete> femaleAthleteList) {
+		this.femaleAthleteList = femaleAthleteList;
 	}
 
 	public Arena getArena() {
