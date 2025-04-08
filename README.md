@@ -11,3 +11,6 @@ A simple system that records medical consultations.
 
 Exercise 2 (library).
 A simple system that records rent registrations of a library.
+
+Exercise 3 (Jiu-Jitsu federation) 
+A system that records all competions and its fights of a Jiu-Jitsu federation.
